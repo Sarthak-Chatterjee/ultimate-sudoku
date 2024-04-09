@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load extra_templates %}
+
+{% block content %}
+<div id="playground">
+    <div id="game-container">
+        <div class="flex-col" id="sudoku-panel">
+            <div class="flex-row center-items" id="sudoku-settings">
+                <div class="flex-row center-items clickable" id="settings-btn-container" onclick="openGameSettings()"><i class="fa fa-gear fa-xl" id="settings-button"></i></div>
+                <select title="grid-skin" id="grid-skin" class="grid-setting grid-skin clickable">
+                    <option value="skin-1" class="skin-1">New</option>
+                    <option value="skin-2" class="skin-2" default>Classic</option>
+                    <option value="skin-9" class="skin-3">Retro</option>
+                    <option value="skin-12" class="skin-4">Custom</option>
+                </select>
+            </div>
+            <div id="sudoku" class="retro-theme">
+                {% block sudoku_grid %}
+                {% endblock sudoku_grid %}
+            </div>
+        </div>
+        <div class="flex-col center-items" id="control-panel">
+            <div id="controls">
+                
+                <div class="flex-col" id="timer-container" onclick="activate(this)">
+                    <div class="flex-row center-items active" id="start-game-button" onclick="startTimer()">Start Game</div>
+                    <div class="timer flex-row center-items" id="timer">
+                        <div class="clock flex-row">
+                            <i class="fa fa-clock"></i>
+                            <span id="hms">00:00:00</span>
+                        </div>
+                        <div class="pause round-btn flex-row center-items" id="timer-btn-holder">
+                            <div class="pause round-btn flex-row center-items" onclick="pauseResume(this)" id="timer-btn"><i class="fa fa-pause"></i></div>
+                            <div class="ripple" id="pauseBtnRipple"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-row" id="keypad-types">
+                    <div class="flex-row keypad-type" id="notes-keypad" onclick="setKeypad(this)">
+                        <i class="fa fa-pencil"></i>
+                        <span class="keypad-type-text flex-row">Notes</span>
+                    </div>
+                    <div class="flex-row keypad-type active" id="regular-keypad" onclick="setKeypad(this)">
+                        <i class="fa fa-pen"></i>
+                        <span class="keypad-type-text flex-row">Regular</span>
+                    </div>
+                    <div class="flex-row keypad-type" id="palette-keypad" onclick="setKeypad(this)">
+                        <i class="fa fa-palette"></i>
+                        <span class="keypad-type-text flex-row">Palette</span>
+                    </div>
+                </div>
+
+                <div class="keypad keypadType-regular" id="keypad">
+                    {% for key_row in key_rows %}
+                    {% widthratio key_cols|length 1 key_row as key_row_zero %}
+                    <div id="key-row-{{key_row}}" class="key-row">
+                        {% for key_col in key_cols %}
+                        {% with key_val=key_row_zero|add:key_col %}
+                        {% if key_val <= size %}
+                        <div class="key btn" id="key-{% get_val keys_map key_val %}" onclick="updateEntries(this)">
+                            {% get_val keys_map key_val %}
+                            
+                            {% comment %} comment starts here {% endcomment %}
+                            {% comment %} <div class="sudoku-entry-notes">
+                                {% for key_row in key_rows %}
+                                {% widthratio key_cols|length 1 key_row as key_row_zero %}
+                                <div id="entry-{{row_index}}-{{col_index}}-row-{{key_row}}" class="entry-note-row">
+                                    {% for key_col in key_cols %}
+                                    {% with key_val=key_row_zero|add:key_col %}
+                                    {% if key_val <= size %}
+                                    <div class="entry-note" id="entry-{{row_index}}-{{col_index}}-{{key_val}}">
+                                        {% get_val keys_map key_val %}
+                                    </div>
+                                    {% endif %}
+                                    {% endwith %}
+                                    {% endfor %}
+                                </div>
+                                {% endfor %}
+                            </div> {% endcomment %}
+                            {% comment %} comment ends here {% endcomment %}
+
+                        </div>
+                        {% endif %}
+                        {% endwith %}
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <div id="special-keys">
+                    <div class="special-key validate btn" id="validate" onclick="validate()" style="color:yellow; background-color: white; font-weight: 900">
+                        <i class="fa fa-check fa-lg fa-bold" style="color:rgb(13, 189, 13);"></i>&nbsp/&nbsp<i class="fa fa-xmark fa-lg fa-bold" style="color:#ff9090;"></i><span></span>
+                    </div>
+                    <div class="special-key erase btn flex-row" id="erase" onclick="eraseEntries()"><i class="fa fa-eraser"></i></div>
+                    <div class="special-key undo btn flex-row" id="undo" onclick="undo()"><i class="fa fa-undo"></i></div>
+                    <div class="special-key redo btn flex-row" id="redo" onclick="redo()"><i class="fa fa-redo"></i></div>
+                    {% comment %} change is_authenticated to is_prime_member {% endcomment %}
+                    <div class="special-key premium-key hint btn flex-row" id="hint" onclick="showHint({{request.user}})"><i class="fa fa-lightbulb"></i> <span>{% if request.user.is_authenticated %}(x<i class="fa fa-infinity"></i>){% else %}(x3){% endif %}</span></div>
+                    <div class="special-key premium-key reveal btn flex-row" onclick=""><i class="fa fa-eye"></i></div>
+                    <div class="special-key premium-key skip btn flex-row" id="skip" onclick=""><i class="fa fa-arrow-right-long"></i></div>
+                </div>
+                <div class="special-keys premium-keys grid">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

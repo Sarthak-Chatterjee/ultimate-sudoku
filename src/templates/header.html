@@ -1,0 +1,133 @@
+{% load static %}
+
+<!-- Navigation Bar -->
+<header class="bg-primary" id="nav-bar">
+    <div class="flex-row" id="nav-container">
+        <div class="flex-row" id="left-nav">
+            <a id="main-logo" href="{% url 'home' %}">
+                <div class="flex-row center-items" id="main-logo-container">
+                    <div id="brand-icon">
+                        <img src="{% static 'img/PuzzlePreviews/3x3.png' %}" alt="logo">
+                    </div>
+                    <div class="brand-text-start">SU</div>
+                    <div class="flex-col" id="brand-text-end-container">
+                        <div class="brand-text-end">PER</div>
+                        <div class="brand-text-end">DOKU</div>
+                    </div>
+                </div>
+            </a>
+            <ul class="flex-row" id="left-nav-menu">
+                <li><a href="https://www.google.com/">
+                        <div class="link-container active">Daily Challenge</div>
+                    </a></li>
+                <li><a href="#">
+                        <div class="link-container">Speedrun</div>
+                    </a></li>
+                <li><a href="#">
+                        <div class="link-container">Marathon</div>
+                    </a></li>
+                <li><a href="#">
+                        <div class="link-container">PvP</div>
+                    </a></li>
+                <li><a href="#">
+                        <div class="link-container">Community</div>
+                    </a></li>
+            </ul>
+        </div>
+        <div class="flex-row" id="right-nav">
+            <div id="search-bar-container">
+                <form action="" method="get" id="search-bar">
+                    <input type="text" name="q" id="search-inp" placeholder="Search">
+                    <button type="submit" class="clickable" id="search-btn"><i class="fa fa-search"
+                            alt="search"></i></button>
+                </form>
+            </div>
+            <div class="toggler clickable off" id="site-theme" onclick="toggleDarkMode(this)">
+                <div class="toggle-slide"></div>
+                <div class="toggle-btn"><i class="fa fa-sun fa-lg"></i></div>
+            </div>
+            <ul class="flex-row" id="right-nav-menu">
+                {% if request.user.is_authenticated %}
+                    <li class="right-nav-item dropdown-container clickable" id="notifications" onclick="toggleActivation(this)">
+                        <div class="notification-bell" id="bell-icon"><i class="fa fa-bell fa-xl"
+                                id="notification-btn"></i></div>
+                        <div id="unread-count">12</div>
+                        <div class="dropdown-menu" id="notification-log">
+                            <ul>
+                                <li class="notification">
+                                    <a class="notification-link flex-row" href="https://www.google.com/">
+                                        <div class="notification-logo img-container"><i class="fa fa-bell"
+                                                id="notification-btn"></i></div>
+                                        <h6 class="notification-heading">Hello World!</h6>
+                                    </a>
+                                </li>
+                                <li class="notification">
+                                    <a class="notification-link flex-row" href="facebook.com">
+                                        <div class="notification-logo img-container"><i class="fa fa-bell"
+                                                id="notification-btn"></i></div>
+                                        <h6 class="notification-heading">Hello World!</h6>
+                                    </a>
+                                </li>
+                                <li class="notification">
+                                    <a class="notification-link flex-row" href="www.instagram.com">
+                                        <div class="notification-logo img-container"><i class="fa fa-bell"
+                                                id="notification-btn"></i></div>
+                                        <h6 class="notification-heading">Hello World!</h6>
+                                    </a>
+                                </li>
+                                <li class="notification">
+                                    <a class="notification-link flex-row" href="bing.com">
+                                        <div class="notification-logo img-container"><i class="fa fa-bell"
+                                                id="notification-btn"></i></div>
+                                        <h6 class="notification-heading">Hello World!</h6>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="right-nav-item">
+                        <div class="dropdown-container clickable" id="account-dropdown"
+                            onclick="toggleActivation(this)">
+                            <div class="img-container flex center-items" id="profile-img-container">
+                                {% comment %} <i class="fa fa-user fa-xl" id="user-btn"></i> {% endcomment %}
+                                <i id="user-btn"><img src="{{ request.user.user_image.url }}" alt="User Image: {{ request.user.user_image }}"></i>
+                            </div>
+                            <div class="dropdown-menu" id="account-menu">
+                                <ul>
+                                    <li class="account-item" id="profile">
+                                        <a class="item-link item-with-value" href="{% url 'profile' request.user %}">
+                                            Profile: <div class="account-item-value" id="user-name">{{ request.user }}</div>
+                                        </a>
+                                    </li>
+                                    <li class="account-item">
+                                        <a class="item-link item-with-value" href="https://www.bing.com/">
+                                            SudoCoins: <div class="account-item-value">{{ request.user.sudo_coins }}</div>
+                                        </a>
+                                    </li>
+                                    <li class="account-item"><a class="item-link">Leaderboard</a></li>
+                                    <li class="account-item"><a class="item-link">Friends</a></li>
+                                    <li class="account-item"><a class="item-link">Settings</a></li>
+                                    <li class="account-item"><a class="item-link">Bookmarks</a></li>
+                                    <li class="account-item"><a class="item-link">Solved Sudokus</a></li>
+                                    <li class="account-item"><a href="{% url 'logout' %}" class="item-link">Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                {% else %}
+                    <li class="right-nav-item">
+                        <a href="{% url 'login' %}" id="log-in">
+                            <div class="right-link-container">log in</div>
+                        </a>
+                    </li>
+                    <li class="right-nav-item">
+                        <a href="{% url 'signup' %}" id="sign-up">
+                            <div class="right-link-container">sign up</div>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</header>
+<div id="header-brick"></div>

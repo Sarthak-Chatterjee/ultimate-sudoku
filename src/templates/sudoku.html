@@ -1,0 +1,38 @@
+<div class="sudoku-grid clickable" id="sudoku-grid">
+    {% with ''|center:block_cols as range_col %}
+    {% for i_col in range_col %}
+        {% with ''|center:block_rows as range_row %}
+        {% for i_row in range_row %}
+        {% with C=forloop.counter0 R=forloop.parentloop.counter0 %}
+        <div class="sudoku-block" id="block-{{ R }}-{{ C }}">
+            {% with ''|center:block_rows as range_row %}
+                {% for j_row in range_row %}
+                    {% with ''|center:block_cols as range_col %}
+                    {% for j_col in range_col %}
+                        {% with c=forloop.counter0 r=forloop.parentloop.counter0 %}
+                        {% widthratio R 1 block_rows as completed_rows %}
+                        {% widthratio C 1 block_cols as completed_cols %}
+                        {% with row_index=completed_rows|add:r col_index=completed_cols|add:c  %}
+                        {% get_val matrix row_index col_index as val %}
+                        {% if val == "" %}
+                        <div class="sudoku-entry {% if C|add:R|divisibleby:2 %}odd{% else %}even{% endif %}-block-entry row-{{row_index}} col-{{col_index}} changeable-entry" id="entry-{{ row_index }}-{{ col_index }}" onclick="highlightGrid(this)">
+                            <div class="sudoku-entry-val">{{val}}</div>
+                        </div>
+                        {% else %}
+                        <div class="sudoku-entry {% if C|add:R|divisibleby:2 %}odd{% else %}even{% endif %}-block-entry row-{{row_index}} col-{{col_index}} static-entry val-{{val}}" id="entry-{{ row_index }}-{{ col_index }}" onclick="highlightGrid(this)">
+                            <div class="sudoku-entry-val">{{val}}</div>
+                        </div>
+                        {% endif %}
+                        {% endwith %}
+                        {% endwith %}
+                    {% endfor %}
+                    {% endwith %}
+                {% endfor %}
+            {% endwith %}
+        </div>
+        {% endwith %}
+        {% endfor %}
+        {% endwith %}
+    {% endfor %}
+    {% endwith %}
+</div>

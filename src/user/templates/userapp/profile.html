@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'flags/sprite.css' %}"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'flags/sprite-hq.css' %}">
+{% endblock css %}
+
+
+
+{% block content %}
+{% if user.banned %}
+<h1>This Player has been banned due to violation of user guidelines</h1>
+{% else %}
+<div id="user-details">
+    <div id="user-details-left" class="flex-col bg-grey">
+        <div id="user-img"><img src="{{ user.user_image.url }}" alt="User Image: {{ user.user_image }}"></div>
+        <div id="country-id" class="flex-row center-items bg-primary">
+            {% comment %} <div id="user-country"> <img src="{{ user.user_country.flag }}" alt="{{ user.user_country.code }}"></div> {% endcomment %}
+            <div id="user-country"><i class="flag2x {{ user.user_country.flag_css }}"></i></div>
+            <div class="flex-col center-items-x">
+                <div id="user-name">{{user.first_name}} {{user.middle_name}} {{user.last_name}}</div>
+                <div id="user-id">@{{user.username}}</div>
+            </div>
+        </div>
+        <div id="about-container" class="bg-black">
+            <div id="about-title" class="flex-row">
+                <h3>About</h3>
+                <div class="edit-btn">edit</div>
+            </div>
+            <div id="user-about">{{user.about}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, eum quo accusamus delectus ab eligendi. Cupiditate eligendi corrupti vero enim.</div>
+        </div>
+    </div>
+    <div class="user-stats">
+        <div id="user-ratings" class="flex-col">
+            <div id="user-rating" class="bg-primary flex-col center-items">
+                <div>{{ user.user_ratings }}</div>
+                <div class="big-title">USER RATING</div>
+            </div>
+            <div id="speedrun-rating" class="bg-primary flex-col center-items">
+                <div>{{ user.speedrun_ratings }}</div>
+                <div class="big-title">SPEEDRUN RATING</div>
+            </div>
+            <div id="marathon-rating" class="bg-primary flex-col center-items">
+                <div>{{ user.marathon_ratings }}</div>
+                <div class="big-title">MARATHON RATING</div>
+            </div>
+            <div id="pvp-rating" class="bg-primary flex-col center-items">
+                <div>{{ user.pvp_ratings }}</div>
+                <div class="big-title">PLAYER vs PLAYER RATING</div>
+            </div>
+        </div>
+
+    </div>
+    <div id="streak-coins" class="flex-col center-items">
+        <div id="sudo-coins" class="bg-primary flex-col center-items">
+            <div class="big-value">{{ user.sudo_coins }}</div>
+            <div class="big-title">SUDO COINS</div>
+        </div>
+        <div id="user-streak" class="bg-primary flex-col center-items">
+            <div class="big-value">{{ user.user_streak }}</div>
+            <div class="big-title">USER STREAK</div>
+        </div>
+        <div id="comm-contrib" class="bg-primary flex-col center-items">
+            <div class="big-value">{{ user.community_contributions }}</div>
+            <div class="big-title">COMMUNITY CONTRIBUTION</div>
+        </div>
+    </div>
+</div>
+<div id="user-history">
+    {{ user.solved_sudokus }}
+</div>
+{% endif %}
+{% endblock content %}

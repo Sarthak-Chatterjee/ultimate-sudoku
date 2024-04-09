@@ -1,0 +1,71 @@
+{% extends 'userapp/baseUserApp.html' %} 
+
+{% block title %}
+Sudoku Website - Signup
+{% endblock %} 
+
+{% block content %}
+<div class="form-container">
+  <h2>Signup</h2>
+  <form method="POST" action="{% url 'signup' %}">
+    {% csrf_token %} {{ form.as_div }}
+    <button type="submit">Sign Up</button>
+  </form>
+  <div class="other-link">
+    Already have an account? <a href="{% url 'login' %}">Login</a>
+  </div>
+</div>
+{% endblock %}
+
+<form method="POST" action="/user/signup/">
+  <div>
+    <label for="id_username">Username:</label>
+    <input
+      type="text"
+      name="username"
+      maxlength="150"
+      autofocus=""
+      required=""
+      id="id_username"
+    />
+  </div>
+
+  <div>
+    <label for="id_email">Email address:</label>
+    <input type="email" name="email" maxlength="254" id="id_email" />
+  </div>
+
+  <div>
+    <label for="id_user_country">User country:</label>
+    <select name="user_country" id="id_user_country">
+      <option value="" selected="">---------</option>
+      <option value="country1">Country 1</option>
+      <option value="country2">Country 2</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="id_password1">Password:</label>
+    <input
+      type="password"
+      name="password1"
+      autocomplete="new-password"
+      required=""
+      id="id_password1"
+      aria-autocomplete="list"
+    />
+  </div>
+
+  <div>
+    <label for="id_password2">Password confirmation:</label>
+    <input
+      type="password"
+      name="password2"
+      autocomplete="new-password"
+      required=""
+      id="id_password2"
+    />
+  </div>
+
+  <button type="submit">Sign Up</button>
+</form>

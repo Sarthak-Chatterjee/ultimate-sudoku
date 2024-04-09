@@ -1,0 +1,165 @@
+.container{
+    background-image: url("../img/Authentication_background.png");
+    /* background-position: 50% 50%; */
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container{
+    background-color: rgba(255, 255, 255, 0.75);
+    width: 36rem;
+    min-height: 24rem;
+    padding: 3rem;
+    margin: 2rem 3rem;
+    border-radius: 2rem;
+    box-shadow: 0px 2px 5px var(--dark-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    color: var(--darker-color);
+}
+
+form{
+    /* background-color: aqua; */
+    height: 100%;
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+form div{
+    /* background-color: bisque; */
+    width: 100%;
+    height: 4rem;
+    margin: 0.5rem; 
+    font-size: 1rem;
+}
+
+form div input{
+    /* box-sizing: content-box; */
+    width: 100%;
+    height: 2rem;
+    margin-top: 0.5rem;
+    background-color: #7fccff33;
+    border: none;
+    padding: 10px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border-bottom: solid 2px var(--darker-color);
+    /* border-bottom: #000; */
+}
+
+form div input:focus{
+    outline: none;
+    color:rgba(0, 0, 0, 1);
+    background-color: #7fccffaa;
+}
+
+form div input:autofill{
+    outline: none;
+    color:rgba(0, 0, 0, 1);
+    /* font-size: 0.8rem;
+    font-weight: 500; */
+    background-color: #7fccffaa;
+    border: solid 2px var(--dark-color);
+}
+
+button{
+    width: 6rem;
+    height: 2.5rem;
+    margin: 1rem 0rem;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    color: var(--white-color);
+    background-color: var(--dark-color);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+button:hover{
+    transform: scale(1.1);
+    font-size: 1.2rem;
+    color: var(--white-color);
+    background-color: #000;
+    border: none;
+}
+
+form div select{
+    width: 100%;
+    height: 2rem;
+    margin-top: 0.5rem;
+    background-color: #7fccff33;
+    border: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border-bottom: solid 2px var(--darker-color);
+}
+
+form div select:focus{
+    outline: none;
+    color:rgba(0, 0, 0, 1);
+    background-color: #7fccffaa;
+}
+
+form div select:autofill{
+    outline: none;
+    color:rgba(0, 0, 0, 1);
+    /* font-size: 1rem;
+    font-weight: 600; */
+    background-color: #7fccffaa;
+    border: solid 2px var(--dark-color);
+}
+
+.other-link{
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.other-link a{
+    cursor: pointer;
+    color: var(--dark-color);
+    font-size: 1rem;
+    font-weight: 600;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.other-link a:hover{
+    padding-left: 15px;
+    color: var(--darker-color);
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.other-link a:after {
+    content: '»';
+    text-decoration: none;
+    /* opacity: 0; */
+    padding-left: 10px;
+    transition: all 0.3s ease;
+}
+
+.other-link a:hover:after {
+    opacity: 1;
+    text-decoration: none;
+    right: 10px;
+    padding-left: 5px;
+}
+
+.helptext{
+    display: none;
+}

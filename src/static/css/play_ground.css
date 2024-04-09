@@ -1,0 +1,372 @@
+
+#sudoku-settings{
+    /* background-color: var(--dark-grey-color); */
+    height: 3rem;
+    position: relative;
+}
+#settings-btn-container{
+    position: absolute;
+    /* top: ce; */
+    left: 1rem;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    color: var(--darker-grey-color);
+    transition: transform 0.1s ease;
+}
+#settings-btn-container:hover{
+    background-color: #d0d0d0;
+    color: black;
+}
+#settings-button{
+    transition: transform 0.4s ease;
+}
+#settings-btn-container:hover #settings-button{
+    transform: rotateZ(-90deg);
+}
+
+#grid-skin{
+    width: 6rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    background-color: var(--dark-grey-color);
+    color: var(--white-color);
+    font-size: 1rem;
+    text-align: center;
+    box-shadow: 0rem 0.1rem 0.1rem darkslategray;
+}
+#grid-skin:focus{
+    outline: none;
+}
+
+.sudoku-entry-notes{
+    /* background-color: rgb(33, 242, 124); */
+    /* margin: 0.2rem; */
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.entry-note-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.entry-note-row+.entry-note-row{
+    margin-top: calc((4 - var(--keypad-rows)) * 0.3rem + 0.1rem);
+}
+.entry-note{
+    font-weight: 500;
+    /* aspect-ratio: 1; */
+    /* border-radius: 16%; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: solid 1px black; */
+    /* background-color: yellow; */
+    /* color: var(--darker-color); */
+}
+.entry-note+.entry-note{
+    margin-left: calc((4 - var(--keypad-cols)) * 0.3rem + 0.1rem);
+}
+/* .entry-note{
+    visibility: hidden;
+}
+.entry-note.active{
+    visibility: visible;
+} */
+
+#sudoku{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    /* padding: auto; */
+    /* background-color: yellow; */
+    /* height: 95vh; */
+    padding: 0.5rem 2rem 1rem;
+    margin: 0 0;
+}
+
+#playground{
+    /* grid-template-columns: 6fr 5fr; */
+    /* background-color: greenyellow; */
+    -webkit-user-select: none;
+    user-select: none;
+    width: 100vw;
+    height: calc(100vh - 64px);
+    display: flex;
+    /* margin: auto auto; */
+}
+
+#game-container{
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    background-color: var(--white-color);
+    margin: auto auto;
+    border: solid var(--dark-color) 2px;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    /* background-color: greenyellow; */
+}
+
+#control-panel{
+    /* background-color: black; */
+    /* height: 100%; */
+    margin: 1rem;
+}
+
+#controls{
+    background-color: aqua;
+    width: 21rem;
+    height: 100%;
+    padding: 1rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#timer-container{
+    /* background-color: grey; */
+    z-index: 0;
+    height: 6rem;
+    position: relative;
+    margin: 0.5rem 0 1.5rem;
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+    transform: rotateX(-90deg);
+    /* overflow: hidden; */
+}
+#timer-container.active{
+    transform: rotateX(0deg);
+}
+#start-game-button, .timer {
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+}
+
+#start-game-button{
+    background-color: rgb(13, 189, 13);
+    border-radius: 1.5rem;
+    font-size: 2.5rem;
+    color: var(--white-color);
+    box-shadow: 0rem 0.1rem 0.2rem darkslategray;
+    transform: rotateX(90deg) translateZ(3.2rem);
+}
+#start-game-button:hover{
+    background-color: green;
+}
+
+.timer{
+    z-index: 1;
+    position: absolute;
+    border-radius: 1.5rem;
+    box-shadow: 0rem 0.1rem 0.2rem darkslategray;
+    font-size: 2rem;
+    padding: 1rem;
+    height: 6rem;
+    /* margin: 1rem 0; */
+    background-color: var(--white-color);
+    /* need to cahnge to var(--primary-color) */
+    color: var(--white-color);
+    /* transform: rotateX(-90deg);  */
+    transform: translateZ(3rem);
+    overflow: hidden;
+}
+.timer *{
+    z-index: 3;
+}
+.clock{
+    margin: auto 1rem;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+.clock i{
+    margin-right: 1rem;
+}
+#timer-btn-holder{
+    z-index: 2;
+    font-size: 2rem;
+    margin: auto;
+    margin-right: 2rem;
+    background-color: var(--primary-color);
+}
+.ripple{
+    content: "";
+    z-index: 2;
+    position: absolute;
+    background-color: inherit;
+    align-self: center;
+    justify-self: center;
+    width: 200%;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    transition: all 0.33s ease-in-out;
+}
+.timer.active{
+    color: var(--primary-color);
+}
+.timer.active .ripple{
+    width: 2px;
+}
+#timer-btn{
+    z-index: 5;
+    font-size: 2rem;
+    width: 3rem;
+}
+.pause{
+    color: var(--darker-color);
+    background: var(--light-grey-color);
+    transition: all 1s ease;
+}
+.resume{
+    color: var(--light-grey-color);
+    background: var(--darker-color);
+    padding-left: 3px;
+    transition: all 1s ease;
+}
+
+#keypad-types{
+    background-color: var(--light-color);
+    /* border: solid 0.2rem var(--dark-color); */
+    height: 3.6rem;
+    margin: 0.2rem 0;
+    /* padding: 0.5rem 0; */
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 1.5rem;
+    border-bottom: solid 2px black;
+}
+.keypad-type{
+    background-color: var(--dark-grey-color);
+    color: var(--white-color);
+    border-radius: 1rem;
+    width: 4rem;
+    margin: 0.6rem 0;
+    /* padding: 1rem 2rem; */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.keypad-type:hover{
+    background-color: var(--black-color);
+    /* padding: 1rem 1rem; */
+    /* aspect-ratio: auto; */
+}
+.keypad-type:hover i{
+    padding-right: 0.5rem;
+}
+.keypad-type span{
+    display: none;
+    font-size: 0;
+    /* border-bottom: solid 1px var(--white-color); */
+}
+.keypad-type span{
+    font-size: 1rem;
+    /* transition: all 0.5s ease; */
+}
+.keypad-type:hover span{
+    display: flex;
+}
+.keypad-type:hover, .keypad-type.active:hover{
+    width: 7.5rem;
+    margin: 0.2rem 0;
+    border-radius: 1.1rem;
+}
+.keypad-type:active, .keypad-type.active{
+    background-color: var(--highlighted-entry-color);
+    width: 6rem;
+    margin: 0.4rem 0;
+    border-radius: 1.2rem;
+}
+
+.keypad{
+    /* background-color: aliceblue; */
+    padding: 0.4rem;
+}
+
+.key-row{
+    display: flex;
+    justify-content: center;
+}
+.key-row+.key-row{
+    margin-top: 0.8rem;
+}
+.key-row .key{
+    font-size: 2.4rem;
+    width: calc((8 - max(var(--keypad-rows), var(--keypad-cols))) * 1rem);
+    aspect-ratio: 1;
+    border-radius: 16%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--dark-color);
+    color: var(--white-color);
+    transition: all 0.5s ease;
+}
+.key+.key{
+    margin-left: 1rem;
+}
+.keypad.keypadType-regular .key{
+    font-size: 2.4rem;
+    background-color: var(--dark-color);
+    color: var(--white-color);
+}
+.keypad.keypadType-notes .key{
+    font-size: 1.2rem;
+    background-color: var(--dark-color);
+    color: var(--white-color);
+}
+.keypad.keypadType-palette .key{
+    font-size: 2.4rem;
+    font-weight: 700;
+}
+
+.key:active, .pressed{
+    transform: translateY(10px) ease-in;
+}
+.key:active::before, .pressed::before{
+    background: rgba(255, 255, 255, 0.12);
+}
+
+#special-keys{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    /* background-color:#d0d0d0; */
+    /* border-top: solid 3px var(--highlighted-odd-grid-color); */
+    border-radius: 0.5rem;
+    gap: 0.8rem;
+    padding: 0.8rem;
+}
+.special-key{
+    grid-column: auto / span 2;
+    height: 2rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--highlighted-odd-grid-color);
+    color: var(--white-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 92 x 33 */
+}
+.premium-key{
+    background-color: var(--premium-color);
+    color: var(--black-color);
+}
+#undo, #redo{
+    grid-column: auto / span 1;
+}
+

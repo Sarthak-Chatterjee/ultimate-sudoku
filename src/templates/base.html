@@ -1,0 +1,69 @@
+{% load static %}
+{% load extra_templates %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.css">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/utils.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nav_bar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/play_ground.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/classic_theme.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/retro_theme.css' %}">
+    {% block css %}
+    {% endblock css %}
+    <style>
+        :root{
+            --n-cols: {{size}};
+            --n-rows: {{size}};
+            --block-width: {{block_rows}};
+            --block-height: {{block_cols}};
+            --keypad-rows: {{ key_rows|length }};
+            --keypad-cols: {{ key_cols|length }};
+            {% comment %} --optimal-nums: ceil(sqrt(var(--n-col))); {% endcomment %}
+        }
+        .sudoku-entry{ width: calc(min(36rem, 12rem + {{block_cols}} * {{block_rows}} * 3rem ) / {{block_rows}} / {{block_cols}}); }
+        .sudoku-block{ width: calc(min(36rem, 12rem + {{block_cols}} * {{block_rows}} * 3rem ) / {{ block_rows }}); }
+        #sudoku-grid{grid-template-columns: repeat({{ block_rows }}, 1fr);}
+        .entry-note{
+            font-size: {{entry_note_font_size}}rem;
+            width: calc({{entry_note_font_size}}rem + 0.05rem);
+            height: calc({{entry_note_font_size}}rem + 0.05rem);
+        }
+        {% get_val matrix 0 as range_size %}
+        {% for bgR, bgG, bgB, colR, colG, colB in color_palette %}
+        .keypad.keypadType-palette #key-{{forloop.counter}}{
+            background-color: rgb({{bgR}}, {{bgG}}, {{bgB}});
+            color: rgb({{colR}}, {{colG}}, {{colB}});
+        }{% endfor %}
+        .keypad.keypadType-palette #key-{{size}}{
+            background-image: url("https://upload.wikimedia.org/wikipedia/commons/6/66/White_grey_checkerboard.svg");
+            color: var(--black-color);
+        }
+    </style>
+    <title>{% block title %}BASE PAGE{% endblock %}</title>
+</head>
+<body>
+    <div id="reset-right-click-container">
+        {% include "header.html" %}
+
+        {% block content %}
+        <h1>REPLACE ME!</h1>
+        {% endblock content %}
+
+        {% include "footer.html" %}
+    </div>
+
+    <script src="{% static 'js/general.js' %}"></script>
+    <script src="{% static 'js/sudokuGrid.js' %}"></script>
+    <script src="{% static 'js/controls.js' %}"></script>
+    <script src="{% static 'js/playGround.js' %}"></script>
+    <script src="{% static 'js/navbar.js' %}"></script>
+    {% block scripts %}
+    {% endblock scripts %}
+</body>
+</html>

@@ -1,0 +1,59 @@
+.calendar{
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.header {
+    justify-content: space-between;
+    padding: 10px;
+}
+  
+.days-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.day {
+    position: relative;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--darker-grey-color);
+    text-align: center;
+}
+.day:hover{
+    background-color: var(--light-color);
+    color: var(--darker-color)
+}
+  
+.tick {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 10px;
+    color: green;
+}
+  
+.cross {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 10px;
+    color: red;
+}
+
+.current-day {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+  
+.weekday {
+    height: 20px;
+    margin: 15px 0 10px;
+    font-weight: 500;
+    font-size: 12px;
+    background-color: var(--light-color);
+    border-radius: 0.5rem;
+    border: 1px solid var(--darker-color);
+}
+

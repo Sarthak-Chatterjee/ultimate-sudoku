@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/calendar.css' %}">
+{% endblock css %}
+
+{% block content %}
+<div id="content-container" class="flex-row">
+    <div id="left-panel" class="flex-col">
+        <div class="panel-segment flex-col">
+            <div class="card-title">Continue Where You Left Off</div>
+            <div id="continue-last-puzzle" class="card flex-row">
+                <div class="size-container flex-col">
+                    <div class="puzzle-size-container flex-row center-items-x center-items-y size inactive">
+                        <div class="arrow-container unclickable"><i class="fa-solid fa-less-than arrow"></i></div>
+                        <div class="puzzle-size">9x9</div>
+                        <div class="arrow-container unclickable"><i class="fa-solid fa-greater-than arrow"></i></div>
+                    </div>
+                    <div class="block-size-container flex-row center-items-x center-items-y size inactive">
+                        <div class="arrow-container unclickable"><i class="fa-solid fa-less-than arrow"></i></div>
+                        <div class="block-size">3x3</div>
+                        <div class="arrow-container unclickable"><i class="fa-solid fa-greater-than arrow"></i></div>
+                    </div>
+                </div>
+                <div class="card-mid-panel flex-col">
+                    <div class="puzzle-details-container flex-row">
+                        <div class="puzzle-details flex-col">
+                            <div class="stats">Time Taken Till Now: 00:05:37</div>
+                            <div class="stats">Wrong Moves: 2</div>
+                            <div class="stats">Hints Taken: 1</div>
+                        </div>
+                    </div>
+                    <div class="button-container">
+                        <div id="continue-btn" class="btn">Continue</div>
+                    </div>
+                </div>
+                <div class="puzzle-preview-container">
+                    <img src="{% static 'img/PuzzlePreviews/3x3.png' %}" alt="3x3 Sudoku Puzzle Image">
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-segment flex-col">
+            <div class="card-title">Start a New Fresh Puzzle</div>
+            <div id="new-puzzle" class="card flex-row">
+                <div class="size-container flex-col">
+                    <div class="puzzle-size-container flex-row center-items size active">
+                        <div class="arrow-container btn"><i class="fa-solid fa-less-than arrow"></i></div>
+                        <div class="puzzle-size">9x9</div>
+                        <div class="arrow-container btn"><i class="fa-solid fa-greater-than arrow"></i></div>
+                    </div>
+                    <div class="block-size-container flex-row center-items size active">
+                        <div class="arrow-container btn"><i class="fa-solid fa-less-than arrow"></i></div>
+                        <div class="block-size">3x3</div>
+                        <div class="arrow-container btn"><i class="fa-solid fa-greater-than arrow"></i></div>
+                    </div>
+                </div>
+                <div class="card-mid-panel flex-col">
+                    <div class="puzzle-details-container flex-row">
+                        <div class="puzzle-details flex-col">
+                            <div class="stats">Puzzles Solved: 50 / 2000 (2.5%)</div>
+                            <div class="stats">Your Rank: 1729 (/50000)</div>
+                        </div>
+                    </div>
+                    <div class="button-container">
+                        <div id="new-game-btn" class="btn">New Game</div>
+                    </div>
+                </div>
+                <div class="puzzle-preview-container">
+                    <img src="{% static 'img/PuzzlePreviews/3x3.png' %}" alt="3x3 Sudoku Puzzle Image">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="right-panel" class="flex-col">
+        <div id="daily-streak" class="card">
+            <div class="card-title">Daily Streak</div>
+            <div id="streak-stats" class="flex-row center-items-y">
+                <div class="current-streak streak-stat flex-col">
+                    <div class="streak-key">Current</div>
+                    <div class="streak-value">3</div>
+                </div>
+                <div class="longest-streak streak-stat flex-col">
+                    <div class="streak-key">Longest</div>
+                    <div class="streak-value">5</div>
+                </div>
+                <div class="Freeze-count streak-stat flex-col">
+                    <div class="streak-key">Freezes</div>
+                    <div class="streak-value">0</div>
+                </div>
+            </div>
+            <div class="calendar flex-col">
+                <div class="header flex-row center-items-y">
+                  <button id="prevMonth" class="arrow-container btn"><i class="fa-solid fa-less-than arrow"></i></button>
+                  <h2 id="monthYear">Month Year</h2>
+                  <button id="nextMonth" class="arrow-container btn unclickable"><i class="fa-solid fa-greater-than arrow"></i></button>
+                </div>
+                <div class="days-container"></div>
+              </div>
+        </div>
+        <div id="trending-puzzles" class="panel-segment flex-col">
+            
+        </div>
+        <div id="advertisement-container">
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/calendar.js' %}"></script>
+{% endblock scripts %}

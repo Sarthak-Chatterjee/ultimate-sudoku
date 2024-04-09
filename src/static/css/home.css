@@ -1,0 +1,165 @@
+#content-container{
+    width: 100%;
+    margin: auto;
+    padding: 42px 84px;
+    justify-content: space-around;
+    column-gap: 42px;
+}
+
+#left-panel{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 630px;
+    gap: 45px;
+}
+
+.panel-segment{
+    gap: 20px;
+}
+
+.card-title{
+    font-size: 36px;
+    font-weight: 500;
+}
+
+#left-panel .card{
+    border-radius: 0.5rem;
+}
+
+#continue-last-puzzle, #new-puzzle{
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.size-container{
+    justify-content: stretch;
+}
+
+.size{
+    min-width: 200px;
+    height: 100%;
+    padding: 8px 16px 8px 12px;
+    background-color: var(--dark-grey-color);
+    font-size: 28px;
+    justify-content: space-between;
+}
+
+.size.inactive{
+    background-color: var(--light-grey-color);
+}
+
+.size.active{
+    background-color: var(--less-light-color);
+}
+
+.size+.size{
+    border-top: solid 1px var(--light-color);
+}
+.size.inactive+.size.inactive{
+    border-top: solid 1px var(--dark-grey-color);
+}
+.arrow-container{
+    background-color: var(--primary-color);
+    padding: 5px 2px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.arrow-container.unclickable{
+    background-color: var(--dark-grey-color);
+}
+
+.arrow{
+    transform: scaleX(0.4);
+}
+
+.puzzle-size-container{
+    border-radius: 0.5rem 0 0 0;
+}
+.block-size-container{
+    border-radius: 0 0 0 0.5rem;
+}
+
+.puzzle-size, .block-size{
+    font-weight: 700;
+}
+.puzzle-preview-container{
+    padding: 10px;
+    padding-left: 0;
+}
+.puzzle-preview-container img{
+    width: 200px;
+    height: 200px;
+}
+.card-mid-panel{
+    width:100%;
+    padding: 15px 10px;
+    gap: 10px;
+}
+
+.puzzle-details-container{
+    height: 100%;
+    width: 100%;
+    background-color: aqua;
+}
+.puzzle-details{
+    width:100%;
+    margin: 0;
+    padding: 10px;
+    font-size: 12px;
+    background-color: var(--light-grey-color);
+}
+
+.button-container{
+    width: 100%;
+}
+
+.button-container .btn{
+    background-color: green;
+    width: 100%;
+    border-radius: 0.25rem;
+    height: 56px;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--white-color);
+}
+
+/* ================ Right Panel ================ */
+#right-panel{
+    gap: 24px;
+    width: 360px;
+}
+
+#daily-streak{
+    margin-top: 48px;
+    padding: 15px;
+}
+
+.card-title{
+    margin: 0 0 10px;
+}
+
+.streak-stat{
+    width: 100%;
+    margin: 10px 5px;
+    gap: 10px;
+}
+
+.streak-stat+.streak-stat{
+    border-left: 1px solid var(--darker-color);
+    padding: 10px
+}
+
+.streak-key{
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--darker-grey-color)
+}
+
+
+.card{
+    box-shadow: 0px 2px 5px var(--dark-color);
+    background-color: var(--white-color);
+    border-radius: 0.5rem;
+}

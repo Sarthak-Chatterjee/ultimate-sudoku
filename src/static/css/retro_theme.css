@@ -1,0 +1,74 @@
+:root{
+    --odd-block-color-retro:#ffdfcf;
+    --even-block-color-retro:#d4ffff;
+    --pos-excited-odd-block-color-retro: #ff9090;
+    --pos-excited-even-block-color-retro: #6fb4ff;
+    --val-excited-odd-block-color-retro: #eeaaee;
+    --val-excited-even-block-color-retro: #eeaaee;
+    --highlighted-entry-odd-block-color-retro: #771177;
+    --highlighted-entry-even-block-color-retro: #771177;
+    --highlighted-entry-odd-block-num-color-retro: #f1f1f1;
+    --highlighted-entry-even-block-num-color-retro: #f1f1f1;
+
+    
+    /* --odd-grid-color-retro:#ffdfcf;
+    --even-grid-color-retro:#d4ffff;
+    --highlighted-odd-grid-color-retro: #ff9090;
+    --highlighted-even-grid-color-retro: #6fb4ff;
+    --highlighted-num-color-retro: #eeaaee;
+    --highlighted-entry-color-retro: #771177; */
+}
+
+.retro-theme .odd-block-entry{
+    background-color: var(--odd-block-color-retro);
+    color: inherit;
+}
+.retro-theme .odd-block-entry.position-excited{
+    background-color: var(--pos-excited-odd-block-color-retro);
+}
+.retro-theme .odd-block-entry.value-excited{
+    background-color: var(--val-excited-odd-block-color-retro);
+}
+.retro-theme .odd-block-entry.highlighted{
+    background-color: var(--highlighted-entry-odd-block-color-retro);
+    color: var(--highlighted-entry-odd-block-num-color-retro)
+}
+
+
+.retro-theme .even-block-entry{
+    background-color: var(--even-block-color-retro);
+    color: inherit;
+}
+.retro-theme .even-block-entry.position-excited{
+    background-color: var(--pos-excited-even-block-color-retro);
+}
+.retro-theme .even-block-entry.value-excited{
+    background-color: var(--val-excited-even-block-color-retro);
+}
+.retro-theme .even-block-entry.highlighted{
+    background-color: var(--highlighted-entry-even-block-color-retro);
+    color: var(--highlighted-entry-even-block-num-color-retro);
+}
+
+.retro-theme .sudoku-entry{
+    display: flex;
+    aspect-ratio: 1;
+    justify-content: center;
+    align-items: center;
+    border: solid 1px var(--black-color);
+}
+.retro-theme .sudoku-entry-val{
+    font-size: calc((16 - var(--n-cols)) * 1rem / 12 + 1.5rem);
+}
+
+.retro-theme .sudoku-block{
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: content-box;
+    border: solid 2px var(--black-color);
+}
+
+.retro-theme #sudoku-grid{
+    display: grid;
+    border: solid 2px var(--black-color);
+}

@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="header">
+      <h1>Welcome to Our Sudoku Website!</h1>
+      <p class="subtitle">Challenge Your Mind with Sudoku</p>
+    </div>
+    
+    <div class="main-content">
+      <div class="action-buttons">
+        <a href="{% url 'play_sudoku' 3 3 1 %}" class="button primary">Play New Sudoku</a>
+        {% if last_puzzle %}
+          <a href="{% url 'continue_puzzle' %}" class="button secondary">Continue Last Puzzle</a>
+        {% endif %}
+      </div>
+      
+      <div class="advertisement">
+        <img src="advertisement.jpg" alt="Advertisement">
+        <p>Discover the Joy of Sudoku with Our Premium Membership!</p>
+      </div>
+      
+      <div class="sudoku-description">
+        <h2>What is Sudoku?</h2>
+        <p>Sudoku is a logic-based number placement puzzle. The objective is to fill a 9x9 grid with digits so that each column, each row, and each of the nine 3x3 subgrids that compose the grid contain all of the digits from 1 to 9.</p>
+        
+        <h2>How to Play Sudoku</h2>
+        <ol>
+          <li>Each puzzle consists of a 9x9 grid with several given numbers.</li>
+          <li>The goal is to fill in the empty cells with numbers from 1 to 9, ensuring that each row, column, and 3x3 subgrid contains each digit exactly once.</li>
+          <li>Use logic and deduction to solve the puzzle, eliminating possibilities until only one option remains for each cell.</li>
+          <li>The puzzle is solved when the entire grid is filled with valid numbers.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
